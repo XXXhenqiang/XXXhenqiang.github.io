@@ -1,0 +1,12 @@
+/* source/css/custom.css */
+#footer {
+  background: transparent !important;
+}
+
+#footer::before {
+  background: transparent !important;
+}
+
+[data-theme="dark"] #footer::before {
+  background: transparent !important;
+}

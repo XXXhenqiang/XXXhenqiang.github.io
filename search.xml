@@ -11,6 +11,18 @@
         <content type="html"><![CDATA[<p>Welcome!</p>]]></content>
       
       
+      <categories>
+          
+          <category> cryptography </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> introduction </tag>
+            
+        </tags>
       
     </entry>
     
