@@ -4,9 +4,34 @@
   
     
     <entry>
-      <title>diyi</title>
-      <link href="/2025/11/11/hello-world/"/>
-      <url>/2025/11/11/hello-world/</url>
+      <title>密码学入门——消息认证码</title>
+      <link href="/2025/11/12/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%85%A5%E9%97%A8%E2%80%94%E2%80%94%E6%B6%88%E6%81%AF%E8%AE%A4%E8%AF%81%E7%A0%81/"/>
+      <url>/2025/11/12/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%85%A5%E9%97%A8%E2%80%94%E2%80%94%E6%B6%88%E6%81%AF%E8%AE%A4%E8%AF%81%E7%A0%81/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> cryptography </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Message Integrity </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>密码学入门——流密码</title>
+      <link href="/2025/11/11/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%85%A5%E9%97%A8%E2%80%94%E2%80%94%E6%B5%81%E5%AF%86%E7%A0%81/"/>
+      <url>/2025/11/11/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%85%A5%E9%97%A8%E2%80%94%E2%80%94%E6%B5%81%E5%AF%86%E7%A0%81/</url>
       
         <content type="html"><![CDATA[<p>Welcome!</p>]]></content>
       
@@ -20,22 +45,9 @@
       
         <tags>
             
-            <tag> introduction </tag>
+            <tag> Stream Ciphers </tag>
             
         </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>backing</title>
-      <link href="/2025/11/05/backing/"/>
-      <url>/2025/11/05/backing/</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-      
       
     </entry>
     

@@ -10,3 +10,7 @@
 [data-theme="dark"] #footer::before {
   background: transparent !important;
 }
+
+/* 隐藏首页大标题，只留副标题 */
+
+
