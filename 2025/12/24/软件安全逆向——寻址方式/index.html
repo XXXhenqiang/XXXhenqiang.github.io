@@ -183,7 +183,7 @@
 <li><input disabled="" type="checkbox"> 基址变址寻址：基址地址加变址地址【MOV EAX,[EBX+ESI]】</li>
 <li><input disabled="" type="checkbox"> 相对基址变址寻址：前一方式基础上增加偏移【MOV EAX,[EBX+ESI+1000H]】</li>
 </ul>
-<h4 id="主要指令"><a href="#主要指令" class="headerlink" title="主要指令"></a>主要指令</h4><h5 id="数据传送指令"><a href="#数据传送指令" class="headerlink" title="数据传送指令"></a>数据传送指令</h5><p><strong>MOV语法：【MOV  目的操作数，源操作数】</strong></p>
+<h4 id="主要指令"><a href="#主要指令" class="headerlink" title="主要指令"></a>主要指令</h4><h5 id="数据传送指令"><a href="#数据传送指令" class="headerlink" title="数据传送指令"></a>数据传送指令</h5><p>MOV语法：【MOV  目的操作数，源操作数】</p>
 <blockquote>
 <p>[!CAUTION]</p>
 <p>目的操作数和源操作数的长度要一致；</p>
@@ -197,16 +197,16 @@
 <p>目的操作数<strong>必须为寄存器</strong>，例mov bx,0x800;movsx eax,bx  →eax&#x3D;0xffff800</p>
 <p>源操作数不能为立即数。</p>
 </blockquote>
-<p><strong>MOVZX语法：【MOVZX 目的操作数，源操作数】</strong>（高位补0扩展）</p>
+<p>MOVZX语法：【MOVZX 目的操作数，源操作数】（高位补0扩展）</p>
 <p>注意事项同上</p>
-<p><strong>LEA语法：【LEA 目的操作数，源操作数】</strong></p>
+<p>LEA语法：【LEA 目的操作数，源操作数】</p>
 <p>取地址送入寄存器</p>
 <blockquote>
 <p>[!CAUTION]</p>
 <p>目的操作数必须为寄存器；</p>
 <p>源操作数必须为内存</p>
 </blockquote>
-<p><strong>XCHG语法：【XCHG 目的操作数，源操作数】</strong></p>
+<p>XCHG语法：【XCHG 目的操作数，源操作数】</p>
 <p>将源操作数和目的操作数交换</p>
 <blockquote>
 <p>[!CAUTION]</p>
@@ -214,26 +214,26 @@
 <p>目的操作数和源操作数都不能为立即数；</p>
 <p>目的操作数和源操作数不能都为内存。</p>
 </blockquote>
-<p><strong>PUSH语法：【PUSH 操作数】</strong></p>
+<p>PUSH语法：【PUSH 操作数】</p>
 <p>将操作数压入栈顶：对于32位操作数，先修改ESP&#x3D;ESP-4，再修改[ESP]&#x3D;操作数</p>
 <blockquote>
 <p>[!IMPORTANT]</p>
 <p>对于PUSH ESP，要先修改[ESP-4]&#x3D;ESP，再修改ESP&#x3D;ESP-4(先保存原栈顶地址，再扩展放进去)</p>
 </blockquote>
-<p><strong>POP语法：【POP 操作数】</strong></p>
+<p>POP语法：【POP 操作数】</p>
 <p>将操作数弹出栈顶：对于32位操作数，先修改操作数&#x3D;[ESP]，再修改ESP&#x3D;ESP+4</p>
 <blockquote>
 <p>[!IMPORTANT]</p>
 <p>同样的，POP ESP时，要先ESP&#x3D;ESP+4 再修改ESP&#x3D;[ESP-4];</p>
 <p>操作数为内存时必须指明类型(byte ptr&#x2F;word ptr&#x2F;dword ptr)【操作数不得为立即数】</p>
 </blockquote>
-<p><strong>PUSHFD&#x2F;POPFD</strong></p>
+<p>PUSHFD&#x2F;POPFD</p>
 <p>将EFlags（x86的状态标志寄存器，存储了 CPU 的运行状态）入&#x2F;出栈</p>
-<p><strong>PUSHAD</strong></p>
+<p>PUSHAD语法：</p>
 <p>按照EAX,ECX,EDX,EBX,ESP（取PUSHAD之前的值）,,EBP,ESI,EDI顺序入栈</p>
-<p><strong>POPAD</strong></p>
+<p>POPAD语法：</p>
 <p>与前一个相反，不过ESP(是恢复到PUSHAD之前的值)</p>
-<h5 id="算术运算指令"><a href="#算术运算指令" class="headerlink" title="算术运算指令"></a>算术运算指令</h5><p>加法指令：ADD,ADC                 减法指令：SUB,SBB             将操作数的值加1&#x2F;减1 ：INC,DEC    </p>
+<h5 id="算术运算指令"><a href="#算术运算指令" class="headerlink" title="算术运算指令"></a>算术运算指令</h5><p>加法指令：ADD,ADC                 减法指令：SUB,SBB             将操作数的值加1&#x2F;减1 ：INC,DEC</p>
 <p>乘法指令： MUL,IMUL              除法指令： DIV,IDIV              将操作数符号反向：NEG</p>
 <p><strong>ADD&#x2F;SUB</strong>语法：将目的操作数加上&#x2F;减去源操作数</p>
 <p><strong>ADC&#x2F;SBB</strong>语法：在前一条基础上需要加上&#x2F;减去CF位的<strong>当前值</strong></p>
