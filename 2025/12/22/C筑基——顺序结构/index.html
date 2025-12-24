@@ -1,0 +1,255 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>C筑基——顺序结构 | Luxsie's Livehouse</title><meta name="author" content="Luxsie"><meta name="copyright" content="Luxsie"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="顺序结构基于过程的程序设计和算法程序（有限命令的有序集合）必须明确”做什么”，还要设计出具体的操作步骤，解决“怎么做”。 编程时需要给出计算机全部操作的具体过程，当程序执行完成，就实现了问题的求解。 在设计算法（解决某个问题的一组确定的有限的操作步骤）时间需要考虑：如何设计操作步骤，怎样保证正确性，怎样保证高效性。 一个基于过程的程序包括： （1）对数据的描述：数据结构（指定数据的类型和数据的组织">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C筑基——顺序结构">
+<meta property="og:url" content="http://luxsie.top/2025/12/22/C%E7%AD%91%E5%9F%BA%E2%80%94%E2%80%94%E9%A1%BA%E5%BA%8F%E7%BB%93%E6%9E%84/index.html">
+<meta property="og:site_name" content="Luxsie&#39;s Livehouse">
+<meta property="og:description" content="顺序结构基于过程的程序设计和算法程序（有限命令的有序集合）必须明确”做什么”，还要设计出具体的操作步骤，解决“怎么做”。 编程时需要给出计算机全部操作的具体过程，当程序执行完成，就实现了问题的求解。 在设计算法（解决某个问题的一组确定的有限的操作步骤）时间需要考虑：如何设计操作步骤，怎样保证正确性，怎样保证高效性。 一个基于过程的程序包括： （1）对数据的描述：数据结构（指定数据的类型和数据的组织">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.postimg.cc/1t4QVDKd/98401d008d63a5f84401307379fe66f9.png">
+<meta property="article:published_time" content="2025-12-22T01:00:00.000Z">
+<meta property="article:modified_time" content="2025-12-22T13:00:00.000Z">
+<meta property="article:author" content="Luxsie">
+<meta property="article:tag" content="C++">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.postimg.cc/1t4QVDKd/98401d008d63a5f84401307379fe66f9.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "C筑基——顺序结构",
+  "url": "http://luxsie.top/2025/12/22/C%E7%AD%91%E5%9F%BA%E2%80%94%E2%80%94%E9%A1%BA%E5%BA%8F%E7%BB%93%E6%9E%84/",
+  "image": "https://i.postimg.cc/1t4QVDKd/98401d008d63a5f84401307379fe66f9.png",
+  "datePublished": "2025-12-22T01:00:00.000Z",
+  "dateModified": "2025-12-22T13:00:00.000Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Luxsie",
+      "url": "http://luxsie.top"
+    }
+  ]
+}</script><link rel="shortcut icon" href="https://i.postimg.cc/d32rGyQd/data-encryption.png"><link rel="canonical" href="http://luxsie.top/2025/12/22/C%E7%AD%91%E5%9F%BA%E2%80%94%E2%80%94%E9%A1%BA%E5%BA%8F%E7%BB%93%E6%9E%84/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"pagination":{"enable":false,"hitsPerPage":8},"languages":{"hits_empty":"No results found for: ${query}","hits_stats":"${hits} articles found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":230,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: {"chs_to_cht":"You have switched to Traditional Chinese","cht_to_chs":"You have switched to Simplified Chinese","day_to_night":"You have switched to Dark Mode","night_to_day":"You have switched to Light Mode","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'C筑基——顺序结构',
+  isHighlightShrink: true,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(https://i.postimg.cc/DfM89M92/哲风壁纸_倒挂_城市_数字艺术.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://i.postimg.cc/Vs3vDHrt/4fb32ba9a82e6a835982f82531a9b751.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">9</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About me</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://i.postimg.cc/1t4QVDKd/98401d008d63a5f84401307379fe66f9.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://i.postimg.cc/nrcpXPXn/icons8_spiderman_24.png" alt="Logo"><span class="site-name">Luxsie's Livehouse</span></a><a class="nav-page-title" href="/"><span class="site-name">C筑基——顺序结构</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  Back to Home</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><!--span= ' ' + _p('search.title')--></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About me</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">C筑基——顺序结构</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-12-22T01:00:00.000Z" title="Created 2025-12-22 09:00:00">2025-12-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-12-22T13:00:00.000Z" title="Updated 2025-12-22 21:00:00">2025-12-22</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Programme-Language/">Programme Language</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word Count:</span><span class="word-count">1.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading Time:</span><span>5mins</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="顺序结构"><a href="#顺序结构" class="headerlink" title="顺序结构"></a>顺序结构</h2><h3 id="基于过程的程序设计和算法"><a href="#基于过程的程序设计和算法" class="headerlink" title="基于过程的程序设计和算法"></a>基于过程的程序设计和算法</h3><p>程序（有限命令的有序集合）必须明确”做什么”，还要设计出具体的操作步骤，解决“怎么做”。</p>
+<p>编程时需要给出计算机全部操作的具体过程，当程序执行完成，就实现了问题的求解。</p>
+<p>在设计<strong>算法</strong>（解决某个问题的一组确定的有限的操作步骤）时间需要考虑：如何设计操作步骤，怎样保证正确性，怎样保证高效性。</p>
+<p>一个基于过程的程序包括：</p>
+<p>（1）对数据的描述：数据结构（指定数据的类型和数据的组织形式）</p>
+<p>（2）对操作的描述：算法</p>
+<p>​                                   程序 &#x3D; 数据结构＋算法</p>
+<p>程序设计过程：具体问题→算法分析、设计→编写程序  【关键：算法设计&amp;具体实现】</p>
+<p>对于C++代码而言，一个源程序由三部分组成：预处理指令（如#include&lt;&gt;）+全局声明+函数（只能有一个main函数）</p>
+<ul>
+<li><p>全局变量：变量在函数外进行声明（有效范围为全局）</p>
+</li>
+<li><p>局部变量：变量在函数内声明，仅在函数内部生效</p>
+</li>
+</ul>
+<h4 id="C-语句"><a href="#C-语句" class="headerlink" title="C++语句"></a>C++语句</h4><h5 id="声明语句"><a href="#声明语句" class="headerlink" title="声明语句"></a>声明语句</h5><p>声明变量&#x2F;函数，对于变量的声明被认为一条语句，满足先定义后使用的原则；</p>
+<h5 id="执行语句"><a href="#执行语句" class="headerlink" title="执行语句"></a>执行语句</h5><p>控制语句：</p>
+<table>
+<thead>
+<tr>
+<th>if ~else</th>
+<th>条件选择语句</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>switch</td>
+<td>多分支条件选择语句</td>
+</tr>
+<tr>
+<td>for()</td>
+<td>循环语句</td>
+</tr>
+<tr>
+<td>while（）</td>
+<td>循环语句</td>
+</tr>
+<tr>
+<td>do~while()</td>
+<td>循环语句</td>
+</tr>
+<tr>
+<td>continue</td>
+<td>结束本次循环语句</td>
+</tr>
+<tr>
+<td>break</td>
+<td>中止执行switch语句</td>
+</tr>
+<tr>
+<td>goto</td>
+<td>转向语句</td>
+</tr>
+<tr>
+<td>return</td>
+<td>从函数返回语句</td>
+</tr>
+</tbody></table>
+<p>函数和流对象调用语句</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">max</span>(<span class="number">10</span>,<span class="number">21</span>);      <span class="comment">//调用函数</span></span><br><span class="line">cout&lt;&lt;x&lt;&lt;endl;  <span class="comment">//流对象调用语句</span></span><br></pre></td></tr></table></figure>
+
+<p>表达式语句</p>
+<p>语句：表达式＋分号【i&#x3D;i+1是一个赋值表达式，但i&#x3D;i+1;就是一个赋值语句】</p>
+<h5 id="空语句"><a href="#空语句" class="headerlink" title="空语句"></a>空语句</h5><p>只有一个分号，啥也不做（通常可直接省略）</p>
+<h5 id="复合语句"><a href="#复合语句" class="headerlink" title="复合语句"></a>复合语句</h5><p>使用<code>&#123;&#125;</code>括起来的语句集合，也称块语句。</p>
+<h4 id="赋值操作"><a href="#赋值操作" class="headerlink" title="赋值操作"></a>赋值操作</h4><p>可通过<code>=</code>完成多个变量的同时赋值</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ((b = a) &gt; <span class="number">0</span>) t = a;    <span class="comment">//用于将a的值赋给b再判断是否大于c</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> a=b=c=<span class="number">1</span>;    <span class="comment">//错误，b和c变量未被声明，赋值符号是右结合</span></span><br><span class="line"><span class="type">int</span> a=<span class="number">1</span>,b=<span class="number">1</span>,c=<span class="number">1</span>;  <span class="comment">//正确，用逗号声明三条语句的等价关系</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="C-的输入与输出"><a href="#C-的输入与输出" class="headerlink" title="C++的输入与输出"></a>C++的输入与输出</h4><p>定义时会在内存中开辟一个缓冲区，用于暂存；执行cout时会把数据先放在输出缓冲区，待输出缓冲区满或遇到endl则将缓冲区已有数据一起输出并清空缓冲区。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">cin&gt;&gt;a&gt;&gt;b;   <span class="comment">//输入流对象，&gt;&gt;流提取运算符，将输入内容提取到内存中,不得一次插入/输出多项</span></span><br><span class="line">cout&lt;&lt;a</span><br><span class="line">    &lt;&lt;b&lt;&lt;endl; <span class="comment">//输出流对象，&lt;&lt;是流插入运算符，将内容插入到输出流程中；分行写时不用分号，换行用endl</span></span><br><span class="line"><span class="comment">/*C语言中用的是printf和scanf，换行是\n*/</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, a);   <span class="comment">//例如输出1</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%5d\n&quot;</span>, a);  <span class="comment">//例如输出   1 ，因为宽度要求5个字符，右对齐，要是-5就是左对齐</span></span><br><span class="line"></span><br><span class="line"><span class="type">char</span> c1，c2; </span><br><span class="line"><span class="type">int</span> a;</span><br><span class="line"><span class="type">float</span> b;</span><br><span class="line">cin&gt;&gt;c1&gt;&gt;c2&gt;&gt;a&gt;&gt;b;   <span class="comment">//输入1234 56.78  会输出 1 2 34 56.78，因为系统会根据变量类型提取</span></span><br></pre></td></tr></table></figure>
+
+<p>输入时可用空格分隔也可换行分割；通过<code>setprecision</code>控制精度，但需要提前引入<code>include&lt;iomanip&gt;</code>头文件，【另外的也可通过<code>setfill</code>填充空格，而<code>setiosflags(ios:fixed)</code>：用于指定浮点数显示，<code>setiosflags(ios:scientific)</code>：用于固定指数表示，也可进制转换，比如hex就是换成16进制输出，oct就是换成8进制输出】，当然我们也可以用C语言中的putchar和getchar函数来进行输入和输出字符。</p>
+<p>对于scanf（若指定分割符号，必须在格式控制那输入）和printf函数的格式控制符号有<code>%m.nf</code>(浮点型数据，m控制宽度，n控制小数位数)，<code>%u</code>输出无符号数，具体可参考上一章内容。</p>
+<p>至此算是对上一章节内容的补充。</p>
+<hr>
+<h3 id="编写顺序结构的程序"><a href="#编写顺序结构的程序" class="headerlink" title="编写顺序结构的程序"></a>编写顺序结构的程序</h3><blockquote>
+<p>从上到下的顺序执行</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*以编程求一元二次方程式ax2+bx+c=0的根为例*/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cmath&gt;</span>           <span class="comment">//记得做算术运算引入cmath库</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;      <span class="comment">//记得写C++要声明使用空间</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> a,b,c;</span><br><span class="line">    <span class="type">float</span> x1,x2;</span><br><span class="line">    cin&gt;&gt;a&gt;&gt;b&gt;&gt;c;</span><br><span class="line">    x1 = (-b+<span class="built_in">sqrt</span>(b*b<span class="number">-4</span>*a*c))/(<span class="number">2</span>*a);</span><br><span class="line">    x2 = (-b-<span class="built_in">sqrt</span>(b*b<span class="number">-4</span>*a*c))/(<span class="number">2</span>*a);</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;x1=&quot;</span>&lt;&lt;x1&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;x2=&quot;</span>&lt;&lt;x2&lt;&lt;endl;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="关系运算和逻辑运算"><a href="#关系运算和逻辑运算" class="headerlink" title="关系运算和逻辑运算"></a>关系运算和逻辑运算</h4><blockquote>
+<p>根据某个指定条件是否满足来决定执行的内容，C++通过if语句来实现条件选择。</p>
+</blockquote>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://i.postimg.cc/3rVmrwmy/eafc8d93c6bbbe730f04cbc3ff9955e5.png"></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*利用if条件选择语句来实现*/</span></span><br><span class="line"><span class="keyword">if</span>(amount&lt;<span class="number">1000</span>)          <span class="comment">// &lt; 被成为关系运算符</span></span><br><span class="line">    tax = <span class="number">0.95</span>;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    tax = <span class="number">0.9</span>;</span><br><span class="line">pay = amount*tax;</span><br></pre></td></tr></table></figure>
+
+<p>在关系运算符中<code>==</code>和·<code>!=</code>的优先级相同，但次于其他的。</p>
+<p>相较于C语言，C++增加了逻辑型数据即输出结果为<code>true</code>或<code>false</code>;其通过<code>bool</code>来定义；编译器在实际编译时会将false处理为0,ture处理为1.(存放时在内存中占1个字节)，因此在处理过程中若bool型变量非0，则按照真（当成1）来处理。</p>
+<p>其他的逻辑运算符有：<code>&amp;&amp;</code>（逻辑与）、<code> ||</code>（逻辑或）和<code> ！</code>（逻辑非，取反），运行时按照非→与→或的顺序来执行。</p>
+<blockquote>
+<p>[!IMPORTANT]</p>
+<p><strong>而整体来看，！＞算术运算符＞关系运算符＞&amp;&amp;和||＞赋值运算符，不过书写时害死尽量加括号</strong></p>
+</blockquote>
+<p>1&lt;&#x3D;a&lt;&#x3D;5这样写报错的原因在于当程序从左至右顺序执行时，结果始终为真，失去了区间判断的意义。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="http://luxsie.top">Luxsie</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="http://luxsie.top/2025/12/22/C%E7%AD%91%E5%9F%BA%E2%80%94%E2%80%94%E9%A1%BA%E5%BA%8F%E7%BB%93%E6%9E%84/">http://luxsie.top/2025/12/22/C%E7%AD%91%E5%9F%BA%E2%80%94%E2%80%94%E9%A1%BA%E5%BA%8F%E7%BB%93%E6%9E%84/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/C/">C++</a></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/12/22/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E9%80%86%E5%90%91%E2%80%94%E2%80%94%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/" title="软件安全逆向——汇编语言"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://i.postimg.cc/1t4QVDKd/98401d008d63a5f84401307379fe66f9.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">Previous</div><div class="info-item-2">软件安全逆向——汇编语言</div></div><div class="info-2"><div class="info-item-1">汇编语言可理解堆结构堆块​         堆块是堆的基本组织单位，包括块首和块身；一般位于整个堆区的开始位置，用于索引堆区中所有堆块的重要信息；堆块共分为占有态（系统管理）和空闲态（程序员管理），对于空闲态堆块而言，块首会额外存储两个4字节指针：Flink（前向）指针和Blink（后向）指针。 ​         当我们使用函数申请的地址指针&#x2F;句柄，会指向堆块块身的首地址（直接越过8字节的块首）；堆块的大小包括块首，当申请16字节时，实际会分配24字节（自动加首部）；堆块的单位是8字节，因此不足会按8字节进行分配。 堆表​        在windouws系统中占有态的堆块被使用程序索引，空闲态的对快被堆表索引；其中最重要的堆表有：空闲双向链表（空表，freelist）和快速单向链表（快表,lookaside,加速堆块分配）；空表包含空表索引（也叫空表表头，大小为128的数组（free[]），数组的每一项包含两个指针用于标识一条空表）和空闲链块两部分。 空表索引的free[1]用于白哦是堆中所有大小为8字节的空闲堆块，之后每个索引项指引的空闲堆块递增8字节。free[...</div></div></div></a><a class="pagination-related" href="/2025/12/18/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E9%80%86%E5%90%91%E2%80%94%E2%80%94%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" title="软件安全逆向——基本概念"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://i.postimg.cc/1t4QVDKd/98401d008d63a5f84401307379fe66f9.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">Next</div><div class="info-item-2">软件安全逆向——基本概念</div></div><div class="info-2"><div class="info-item-1">基本概念 关于软件安全的内容分享主要用于专业课程复习所用，所以我会直接打乱结构，分为可理解和需掌握两大部分分章节进行后续阐述。  可理解病毒？木马计算机病毒影响计算机使用并能自我复制的一组计算机指令或程序代码，具备感染性、潜伏性、破坏性和特定触发性； 蠕虫(worm)是一种特殊的计算机病毒，它利用网络进行复制和传播（传播自身功能的copy，或将自身的某些部分传到其他的系统中） 木马在表面伪装成可用软件，实际目的是危害计算机安全并导致严重破坏的计算机程序。（基于远程控制，具有非授权性和隐蔽性【攻击者会利用多种手段隐藏木马，使得即使被发现也难以确定位置】）。 漏洞分类0Day：处于未公开状态的漏洞，当前网络战的主要武器。 1Day：补丁发布在一天内的漏洞，通常指发布补丁时间不长的漏洞。 2Day：厂商已发现但未公开细节，未发布补丁的漏洞 已公开漏洞：大多数用户已打补丁的漏洞。 POC(样本验证代码)用于验证目标系统是否存在特定漏洞的一段程序或脚本。 漏洞应急响应机构CVE:（美国MIT）通用漏洞列表，实现了安全漏洞命名机制的规范化和标准化。 NVD：(美国技术局)美国国家漏洞数据库。...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/12/18/C%E7%AD%91%E5%9F%BA%E2%80%94%E2%80%94%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/" title="C筑基——基础概念"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://i.postimg.cc/1t4QVDKd/98401d008d63a5f84401307379fe66f9.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-18</div><div class="info-item-2">C筑基——基础概念</div></div><div class="info-2"><div class="info-item-1">C筑基——基础概念什么是程序设计语言 系统软件：管理计算机的各种资源（操作系统，语言处理程序等）； 应用软件：专为实现某一应用开发的软件（QQ,WeChat等）； 软件&#x3D;程序（为完成特定任务而用某种语言编写的一组指令序列）＋文档＋数据； 程序设计语言分为：机器语言（计算机直接识别和执行，可读性差），汇编语言（加入助记符的二进制编码，通过Assembler转换为机器指令执行）和高级语言（易于学习和编程，编写成的程序成为源程序）; 源程序通过compiler翻译为机器语言（目标程序）执行，目标程序与支持库代码连接构成可执行文件（.exe） C++语言特点：简洁高效，功能强（在C语言基础上增加了面向对象机制） C语言特点：结构化与模块化（面向过程） 程序设计过程：问题分析→算法设计→编写程序（对算法的具体描述）→运行调试（先编译后执行）→文档编写  基本知识 所有变量在使用前都需要定义，包括类型和变量名int a， 变量名的第一个字符只能是下划线或者字母   //单行注释；  /* */多行注释；contol+/可对多行同时加注释，再按可取消  #预处理指令，类似于Pytho...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://i.postimg.cc/Vs3vDHrt/4fb32ba9a82e6a835982f82531a9b751.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Luxsie</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">9</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/XXXhenqiang"><i class="fab fa-github"></i><span>Who I am?</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/XXXhenqiang" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:3107466335@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">We seem to have met somewhere before.</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%BA%E5%BA%8F%E7%BB%93%E6%9E%84"><span class="toc-number">1.</span> <span class="toc-text">顺序结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E8%BF%87%E7%A8%8B%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%92%8C%E7%AE%97%E6%B3%95"><span class="toc-number">1.1.</span> <span class="toc-text">基于过程的程序设计和算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#C-%E8%AF%AD%E5%8F%A5"><span class="toc-number">1.1.1.</span> <span class="toc-text">C++语句</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%A3%B0%E6%98%8E%E8%AF%AD%E5%8F%A5"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">声明语句</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E8%AF%AD%E5%8F%A5"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">执行语句</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%A9%BA%E8%AF%AD%E5%8F%A5"><span class="toc-number">1.1.1.3.</span> <span class="toc-text">空语句</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%A4%8D%E5%90%88%E8%AF%AD%E5%8F%A5"><span class="toc-number">1.1.1.4.</span> <span class="toc-text">复合语句</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B5%8B%E5%80%BC%E6%93%8D%E4%BD%9C"><span class="toc-number">1.1.2.</span> <span class="toc-text">赋值操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#C-%E7%9A%84%E8%BE%93%E5%85%A5%E4%B8%8E%E8%BE%93%E5%87%BA"><span class="toc-number">1.1.3.</span> <span class="toc-text">C++的输入与输出</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E5%86%99%E9%A1%BA%E5%BA%8F%E7%BB%93%E6%9E%84%E7%9A%84%E7%A8%8B%E5%BA%8F"><span class="toc-number">1.2.</span> <span class="toc-text">编写顺序结构的程序</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E8%BF%90%E7%AE%97%E5%92%8C%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97"><span class="toc-number">1.2.1.</span> <span class="toc-text">关系运算和逻辑运算</span></a></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 By Luxsie</span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="Toggle Between Traditional and Simplified Chinese">繁</button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="23" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="/"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading Database</span></div><div class="local-search-input"><input placeholder="Search for Posts" type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
